@@ -55,7 +55,7 @@ export default {
     return {
       form: {
         title: '',
-        date: null,
+        date: new Date(),
         priority: 'MEDIUM',
         color: 'GRAY'
       }
