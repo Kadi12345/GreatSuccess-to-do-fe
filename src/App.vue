@@ -3,11 +3,9 @@
     <div class="flex justify-center">
       <div class="min-h-screen flex overflow-x-scroll py-12">
         <div
-          class="bg-gray-100 rounded-lg px-3 py-3 column-double-width rounded mr-4"
-        >
+          class="bg-gray-100 rounded-lg px-3 py-3 column-double-width rounded mr-4">
           <p
-            class="text-gray-700 font-semibold font-sans tracking-wide text-sm"
-          >
+            class="text-gray-700 font-semibold font-sans tracking-wide text-sm">
             Add new todo
           </p>
           <new-task class="my-3" @task-added="getTasks" />
@@ -18,11 +16,8 @@
         <div
           v-for="column in columns"
           :key="column.title"
-          class="bg-gray-100 rounded-lg px-3 py-3 column-width rounded mr-4"
-        >
-          <p
-            class="text-gray-700 font-semibold font-sans tracking-wide text-sm"
-          >
+          class="bg-gray-100 rounded-lg px-3 py-3 column-width rounded mr-4">
+          <p class="text-gray-700 font-semibold font-sans tracking-wide text-sm">
             {{ column.title }}
           </p>
           <!-- Draggable component comes from vuedraggable. It provides drag & drop functionality -->
@@ -32,15 +27,13 @@
             :style="{ height: !column.tasks.length ? '300px' : '' }"
             ghost-class="ghost-card"
             group="tasks"
-            @change="moveTask($event, column)"
-          >
+            @change="moveTask($event, column)">
             <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
             <task-card
               v-for="task in column.tasks"
               :key="task.id"
               :task="task"
-              class="mt-3 cursor-move"
-            ></task-card>
+              class="mt-3 cursor-move"></task-card>
           </draggable>
         </div>
       </div>
@@ -91,12 +84,6 @@ export default {
             url: `api/moveTask/${event.added.element._id}/done-tasks`,
             method: "GET",
           });
-          if (column.title === "Todo") {
-            await axios({
-              url: `api/moveTask/${event.added.element._id}/todo-tasks`,
-              method: "GET",
-            });
-          }
         }
       }
     },
