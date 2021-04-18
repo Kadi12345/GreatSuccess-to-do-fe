@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import Vue from "vue";
 import draggable from "vuedraggable";
 import TaskCard from "./components/TaskCard.vue";
 import NewTask from "./components/NewTask.vue";
