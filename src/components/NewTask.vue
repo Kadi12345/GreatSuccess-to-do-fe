@@ -13,7 +13,7 @@
     <div class="row mt-4">
       <div class="col">
         <label for="first_name" class="block text-sm font-medium text-gray-700">Date</label>
-        <datepicker class="block text-sm font-medium text-gray-700 p-1" placeholder="Select Date" v-model="form.date"></datepicker>
+        <datepicker class="block text-sm font-medium text-gray-700 p-1" placeholder="Select Date" v-model="form.date" :format="'dd.MM.yyyy'"></datepicker>
       </div>
     </div>
     <div class="row mt-4">
