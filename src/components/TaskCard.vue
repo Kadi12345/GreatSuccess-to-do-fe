@@ -9,27 +9,28 @@
       </p>
     </div>
     <div class="flex mt-4 justify-between items-center">
-      <span class="text-sm text-gray-600">{{ moment(task.date).format('DD.MM.YYYY') }}</span>
+      <span class="text-sm text-gray-600">{{
+        moment(task.date).format("DD.MM.YYYY")
+      }}</span>
       <badge v-if="task.priority" :color="badgeColor"
-        ><span>{{ task.priority }}</span></badge
+        ><span class="capitalize">{{ task.priority.toLowerCase() }}</span></badge
       >
     </div>
   </div>
 </template>
 <script>
 import Badge from "./Badge.vue";
-import moment from 'moment';
+import moment from "moment";
 
 export default {
   components: {
-    Badge
+    Badge,
   },
   props: {
     task: {
-
       priority: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   computed: {
     badgeColor() {
@@ -37,7 +38,7 @@ export default {
         HIGH: "red",
         MEDIUM: "yellow",
         LOW: "green",
-        default: "teal"
+        default: "teal",
       };
       return mappings[this.task.priority] || mappings.default;
     }
@@ -45,5 +46,5 @@ export default {
   methods: {
     moment
   }
-}
+};
 </script>
