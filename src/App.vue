@@ -91,12 +91,12 @@ export default {
       if (event.added) {
         if (column.title === "Done") {
           await axios({
-            url: `api/moveTask/${event.added.element._id}/done-tasks`,
+            url: `api/moveTask/${event.added.element._id}/done`,
             method: "GET",
           });
         } else if (column.title === "Todo") {
           await axios({
-            url: `api/moveTask/${event.added.element._id}/todo-tasks`,
+            url: `api/moveTask/${event.added.element._id}/todo`,
             method: "GET",
           });
         }
