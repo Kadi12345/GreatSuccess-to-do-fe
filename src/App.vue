@@ -81,7 +81,7 @@ export default {
   methods: {
     async getTasks() {
       const res = await axios({
-        url: "api/tasks",
+        url: "https://greatsuccess-todo.herokuapp.com/api/tasks",
         method: "GET",
       });
 
@@ -91,12 +91,12 @@ export default {
       if (event.added) {
         if (column.title === "Done") {
           await axios({
-            url: `api/moveTask/${event.added.element._id}/done`,
+            url: `https://greatsuccess-todo.herokuapp.com/api/moveTask/${event.added.element._id}/done`,
             method: "GET",
           });
         } else if (column.title === "Todo") {
           await axios({
-            url: `api/moveTask/${event.added.element._id}/todo`,
+            url: `https://greatsuccess-todo.herokuapp.com/api/moveTask/${event.added.element._id}/todo`,
             method: "GET",
           });
         }
