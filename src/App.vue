@@ -81,7 +81,7 @@ export default {
   methods: {
     async getTasks() {
       const res = await axios({
-        url: "https://git.heroku.com/greatsuccess-todo.git",
+        url: "api/tasks",
         method: "GET",
       });
 
@@ -91,14 +91,12 @@ export default {
       if (event.added) {
         if (column.title === "Done") {
           await axios({
-            url: `
-https://git.heroku.com/greatsuccess-todo.git/${event.added.element._id}/done`,
+            url: `api/moveTask/${event.added.element._id}/done`,
             method: "GET",
           });
         } else if (column.title === "Todo") {
           await axios({
-            url: `
-https://git.heroku.com/greatsuccess-todo.git/${event.added.element._id}/todo`,
+            url: `api/moveTask/${event.added.element._id}/todo`,
             method: "GET",
           });
         }
