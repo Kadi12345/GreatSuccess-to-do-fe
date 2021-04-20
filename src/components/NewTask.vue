@@ -112,7 +112,7 @@ export default {
   methods: {
     async addTodo() {
       await axios({
-        url: "https://git.heroku.com/greatsuccess-todo.git",
+        url: "api/createTask",
         method: "POST",
         data: this.form,
       });
