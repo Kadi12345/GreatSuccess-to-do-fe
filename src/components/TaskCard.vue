@@ -9,18 +9,28 @@
       </p>
     </div>
     <div class="flex mt-4 justify-between items-center">
-      <span class="text-sm text-gray-600">{{
+      <p>Due-date:</p>
+      <span class="text-sm text-gray-600">
+        {{
         moment(task.date).format("DD.MM.YYYY")
       }}</span>
       <badge v-if="task.priority" :color="badgeColor"
-        ><span class="capitalize">{{ task.priority.toLowerCase() }}</span></badge
+        ><span class="capitalize">{{
+          task.priority.toLowerCase()
+        }}</span></badge
       >
     </div>
+    <div class="col text-right">
+        <button class="bg-red-400 mx-2 px-4 mt-4 mr-1 py-1 rounded" @click="deleteTask($_id)">
+         Aarghh, whatever, delete it!
+        </button>
+      </div>
   </div>
 </template>
 <script>
 import Badge from "./Badge.vue";
 import moment from "moment";
+import axios from "axios";
 
 export default {
   components: {
@@ -41,10 +51,18 @@ export default {
         default: "teal",
       };
       return mappings[this.task.priority] || mappings.default;
-    }
+    },
   },
   methods: {
-    moment
-  }
+    moment,
+    async deleteTask($_id) {
+      await axios({
+        url: "https://greatsuccess-todo.herokuapp.com/api/deleteTask/${_id}",
+        method: "DELETE",
+        // data: this.form,
+      });
+      this.$emit("task-deleted");
+    },
+  },
 };
 </script>
