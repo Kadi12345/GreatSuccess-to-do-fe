@@ -57,7 +57,7 @@ export default {
     moment,
     async deleteTask($_id) {
       await axios({
-        url: "https://greatsuccess-todo.herokuapp.com/api/deleteTask/${_id}",
+        url: `https://greatsuccess-todo.herokuapp.com/api/deleteTask/${_id}`,
         method: "DELETE",
         // data: this.form,
       });
