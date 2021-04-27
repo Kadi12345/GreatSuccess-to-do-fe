@@ -13,14 +13,20 @@
         moment(task.date).format("DD.MM.YYYY")
       }}</span>
       <badge v-if="task.priority" :color="badgeColor"
-        ><span class="capitalize">{{ task.priority.toLowerCase() }}</span></badge
+        ><span class="capitalize">{{
+          task.priority.toLowerCase()
+        }}</span></badge
       >
+      <button class="bg-red-400 px-2 py-1 rounded" @click="deleteTodo">
+        X
+      </button>
     </div>
   </div>
 </template>
 <script>
 import Badge from "./Badge.vue";
 import moment from "moment";
+import axios from "axios";
 
 export default {
   components: {
@@ -41,10 +47,19 @@ export default {
         default: "teal",
       };
       return mappings[this.task.priority] || mappings.default;
-    }
+    },
   },
   methods: {
-    moment
-  }
+    moment,
+    async deleteTodo() {
+      await axios({
+        //url: "https://greatsuccess-todo.herokuapp.com/api/deleteTask",
+        url: "api/deleteTask",
+        method: "DELETE",
+        data: this.task,
+      });
+      this.$emit("task-deleted");
+    },
+  },
 };
 </script>
