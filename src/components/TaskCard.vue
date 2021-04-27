@@ -23,11 +23,6 @@
         X
       </button>
     </div>
-    <div class="col text-right">
-        <button class="bg-red-400 mx-2 px-4 mt-4 mr-1 py-1 rounded" @click="deleteTask($_id)">
-         Aarghh, whatever, delete it!
-        </button>
-      </div>
   </div>
 </template>
 <script>
