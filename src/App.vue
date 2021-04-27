@@ -29,17 +29,18 @@
           <draggable
             :list="column.tasks"
             :animation="200"
-            :style="{ height: !column.tasks.length ? '300px' : '' }"
+            :style="{height: !column.tasks.length ? '300px' : ''}"
             ghost-class="ghost-card"
             group="tasks"
             @change="moveTask($event, column)"
           >
             <!-- Each element from here will be draggable and animated. Note :key is very important here to be unique both for draggable and animations to be smooth & consistent. -->
             <task-card
-              v-for="task in column.tasks"
+              v-for="(task) in column.tasks"
               :key="task.id"
               :task="task"
               class="mt-3 cursor-move"
+              @task-deleted="getTasks"
             ></task-card>
           </draggable>
         </div>
@@ -52,14 +53,13 @@
 import draggable from "vuedraggable";
 import TaskCard from "./components/TaskCard.vue";
 import NewTask from "./components/NewTask.vue";
-import axios from "axios";
-
+import axios from 'axios';
 export default {
   name: "App",
   components: {
     TaskCard,
     draggable,
-    NewTask,
+    NewTask
   },
   data() {
     return {
@@ -75,51 +75,48 @@ export default {
       ],
     };
   },
-  async created() {
-    await this.getTasks();
+  async created () {
+    await this.getTasks()
   },
   methods: {
     async getTasks() {
       const res = await axios({
-        url: "https://greatsuccess-todo.herokuapp.com/api/tasks",
+        url: "api/tasks",
         method: "GET",
       });
-
       this.columns = res.data;
     },
     async moveTask(event, column) {
       if (event.added) {
         if (column.title === "Done") {
           await axios({
-            url: `https://greatsuccess-todo.herokuapp.com/api/moveTask/${event.added.element._id}/done`,
+            url: `api/moveTask/${event.added.element._id}/done`,
             method: "GET",
           });
         } else if (column.title === "Todo") {
           await axios({
-            url: `https://greatsuccess-todo.herokuapp.com/api/moveTask/${event.added.element._id}/todo`,
+            url: `api/moveTask/${event.added.element._id}/todo`,
             method: "GET",
           });
         }
       }
     },
   },
-};
+}
 </script>
 
 <style scoped>
-.column-double-width {
-  min-width: 460px;
-  width: 460px;
-}
-
-.column-width {
-  min-width: 320px;
-  width: 320px;
-}
-
-.ghost-card {
-  opacity: 0.5;
-  background: #f7fafc;
-  border: 1px solid #4299e1;
-}
+  .column-double-width {
+    min-width: 460px;
+    width: 460px;
+  }
+  .column-width {
+    min-width: 320px;
+    width: 320px;
+  }
+  .ghost-card {
+    opacity: 0.5;
+    background: #f7fafc;
+    border: 1px solid #4299e1;
+  }
 </style>
