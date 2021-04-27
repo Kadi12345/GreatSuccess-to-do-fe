@@ -9,7 +9,9 @@
       </p>
     </div>
     <div class="flex mt-4 justify-between items-center">
-      <span class="text-sm text-gray-600">{{
+      <p>Due-date:</p>
+      <span class="text-sm text-gray-600">
+        {{
         moment(task.date).format("DD.MM.YYYY")
       }}</span>
       <badge v-if="task.priority" :color="badgeColor"
@@ -21,6 +23,11 @@
         X
       </button>
     </div>
+    <div class="col text-right">
+        <button class="bg-red-400 mx-2 px-4 mt-4 mr-1 py-1 rounded" @click="deleteTask($_id)">
+         Aarghh, whatever, delete it!
+        </button>
+      </div>
   </div>
 </template>
 <script>
