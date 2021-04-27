@@ -20,8 +20,8 @@
         }}</span></badge
       >
     </div>
-    <div class="col text-right">
-        <button class="bg-red-400 mx-2 px-4 mt-4 mr-1 py-1 rounded" @click="deleteTask($_id)">
+   <div class="col text-right">
+        <button class="bg-red-400 mx-2 px-4 mt-4 mr-1 py-1 rounded" @click="deleteTask($event)">
          Aarghh, whatever, delete it!
         </button>
       </div>
@@ -55,9 +55,9 @@ export default {
   },
   methods: {
     moment,
-    async deleteTask($_id) {
+    async deleteTask(event) {
       await axios({
-        url: `https://greatsuccess-todo.herokuapp.com/api/deleteTask/${_id}`,
+        url: `https://greatsuccess-todo.herokuapp.com/api/deleteTask/${event._id}`,
         method: "DELETE",
         // data: this.form,
       });
