@@ -2,9 +2,15 @@
   <div id="app">
     <div class="flex justify-center">
       <div class="min-h-screen flex overflow-x-scroll py-12">
-        <div class="bg-gray-100 rounded-lg px-3 py-3 column-double-width rounded mr-4">
-          <p class="text-gray-700 font-semibold font-sans tracking-wide text-sm">Add new todo</p>
-          <new-task class="my-3" @task-added="getTasks"/>
+        <div
+          class="bg-gray-100 rounded-lg px-3 py-3 column-double-width rounded mr-4"
+        >
+          <p
+            class="text-gray-700 font-semibold font-sans tracking-wide text-sm"
+          >
+            Add new todo
+          </p>
+          <new-task class="my-3" @task-added="getTasks" />
         </div>
       </div>
 
@@ -14,7 +20,11 @@
           :key="column.title"
           class="bg-gray-100 rounded-lg px-3 py-3 column-width rounded mr-4"
         >
-          <p class="text-gray-700 font-semibold font-sans tracking-wide text-sm">{{column.title}}</p>
+          <p
+            class="text-gray-700 font-semibold font-sans tracking-wide text-sm"
+          >
+            {{ column.title }}
+          </p>
           <!-- Draggable component comes from vuedraggable. It provides drag & drop functionality -->
           <draggable
             :list="column.tasks"
@@ -53,7 +63,15 @@ export default {
   data() {
     return {
       columns: [
-      ]
+        {
+          title: "Todo",
+          tasks: [],
+        },
+        {
+          title: "Done",
+          tasks: [],
+        },
+      ],
     };
   },
   async created () {
