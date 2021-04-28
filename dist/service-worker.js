@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.a641ac2cbfe9e69d3baab2c73855a6f9.js"
+  "/precache-manifest.5445db0c8a3912ba417e9750039ba19f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "animated-draggable-kanban-board-with-tailwind-and-vue"});
