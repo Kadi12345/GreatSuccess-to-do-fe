@@ -85,7 +85,7 @@ export default {
   methods: {
     async getTasks() {
       const res = await axios({
-       url: `https://greatsuccess-todo.herokuapp.com//api/tasks`,
+       url: `https://greatsuccess-todo.herokuapp.com/api/tasks`,
         //url: `/api/tasks`,
         method: "GET",
       });
