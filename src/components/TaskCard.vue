@@ -66,7 +66,7 @@ export default {
       await axios({
         //url: "https://greatsuccess-todo.herokuapp.com/api/deleteTask",
 
-        url: `${apiURL}/api/deleteTask`,
+        url: `${this.apiURL}/api/deleteTask`,
         method: "DELETE",
         data: this.task,
       });
