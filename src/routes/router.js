@@ -15,7 +15,11 @@ export const routes = [
     path: '/tasks',
     name: 'Your tasks',
     components: { default: Tasks }
-  }
+  },
+  {
+    path: '/*',
+    component: 404
+    },
 ]
 
 const router = new VueRouter({
