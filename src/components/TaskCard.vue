@@ -35,6 +35,11 @@ import moment from "moment";
 import axios from "axios";
 
 export default {
+  data() {
+    return {
+      apiURL: PROCESS.ENV.VUE_APP_BACKEND_URL,
+    };
+  },
   components: {
     Badge,
   },
