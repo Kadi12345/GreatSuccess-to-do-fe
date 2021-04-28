@@ -100,7 +100,7 @@ import Datepicker from "vuejs-datepicker";
 export default {
   data() {
     return {
-      apiURL: PROCESS.ENV.VUE_APP_BACKEND_URL,
+      apiURL: process.env.VUE_APP_BACKEND_URL,
       form: {
         author: "",
         title: "",
