@@ -5,6 +5,10 @@
         <div
           class="bg-gray-100 rounded-lg px-3 py-3 column-double-width rounded mr-4"
         >
+        <button class="bg-green-400 px-4 py-2 rounded mb-3" @click="backToEnterName">
+          Change author
+        </button>
+        
           <p
             class="text-gray-700 font-semibold font-sans tracking-wide text-sm"
           >
@@ -100,6 +104,9 @@ export default {
           });
         }
       }
+    },
+    backToEnterName: function(event) {
+      this.$router.push("/");
     },
   },
 };
