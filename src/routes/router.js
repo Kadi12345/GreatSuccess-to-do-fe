@@ -12,9 +12,9 @@ export const routes = [
     components: { default: Name }
   },
   {
-    path: '/todo-list',
+    path: '/tasks',
     name: 'Your tasks',
-    components: { default: todo-list }
+    components: { default: Tasks }
   }
 ]
 
