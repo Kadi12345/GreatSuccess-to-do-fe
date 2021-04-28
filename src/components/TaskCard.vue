@@ -1,25 +1,29 @@
 <template>
   <div
-    class="bg-white shadow rounded px-3 pt-3 pb-5 border-2"
+    class="bg-white shadow rounded px-1 pt-2 pb-3 border-2"
     :class="'border-' + task.color.toLowerCase() + '-400'"
   >
     <div class="flex justify-between">
       <p class="text-gray-700 font-semibold font-sans tracking-wide text-sm">
-        {{ task.title }}
+        Author: {{ task.author }}
       </p>
     </div>
-    <div class="flex mt-4 justify-between items-center">
+    <div class="flex justify-between">
+      <p class="text-gray-700 font-semibold font-sans tracking-wide text-sm">
+        Task: {{ task.title }}
+      </p>
+    </div>
+    <div class="flex justify-between">
       <p>Due-date:</p>
       <span class="text-sm text-gray-600">
-        {{
-        moment(task.date).format("DD.MM.YYYY")
-      }}</span>
+        {{ moment(task.date).format("DD.MM.YYYY") }}</span
+      >
       <badge v-if="task.priority" :color="badgeColor"
         ><span class="capitalize">{{
           task.priority.toLowerCase()
         }}</span></badge
       >
-      <button class="bg-red-400 px-2 py-1 rounded" @click="deleteTodo">
+      <button class="bg-red-200 px-2 py-2 rounded" @click="deleteTodo">
         X
       </button>
     </div>
