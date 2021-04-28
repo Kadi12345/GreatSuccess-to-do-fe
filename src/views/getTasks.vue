@@ -5,10 +5,13 @@
         <div
           class="bg-gray-100 rounded-lg px-3 py-3 column-double-width rounded mr-4"
         >
-        <button class="bg-green-400 px-4 py-2 rounded mb-3" @click="backToEnterName">
-          Change author
-        </button>
-        
+          <button
+            class="bg-green-400 px-4 py-2 rounded mb-3"
+            @click="backToEnterName"
+          >
+            Change author
+          </button>
+
           <p
             class="text-gray-700 font-semibold font-sans tracking-wide text-sm"
           >
@@ -67,6 +70,7 @@ export default {
   },
   data() {
     return {
+      apiURL: PROCESS.ENV.VUE_APP_BACKEND_URL,
       columns: [
         {
           title: "Todo",
@@ -85,7 +89,7 @@ export default {
   methods: {
     async getTasks() {
       const res = await axios({
-       url: `https://greatsuccess-todo.herokuapp.com/api/tasks`,
+        url: `${apiURL}/api/tasks`,
         //url: `/api/tasks`,
         method: "GET",
       });
@@ -95,13 +99,14 @@ export default {
       if (event.added) {
         if (column.title === "Done") {
           await axios({
-          url: `https://greatsuccess-todo.herokuapp.com/api/moveTask/${event.added.element._id}/done`,
+            url: `${apiURL}/api/moveTask/${event.added.element._id}/done`,
+
             //url: `api/moveTask/${event.added.element._id}/done`,
             method: "GET",
           });
         } else if (column.title === "Todo") {
           await axios({
-          url: `https://greatsuccess-todo.herokuapp.com/api/moveTask/${event.added.element._id}/todo`,
+            url: `${apiURL}/api/moveTask/${event.added.element._id}/todo`,
             //url: `api/moveTask/${event.added.element._id}/todo`,
             method: "GET",
           });

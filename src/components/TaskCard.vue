@@ -60,7 +60,8 @@ export default {
     async deleteTodo() {
       await axios({
         //url: "https://greatsuccess-todo.herokuapp.com/api/deleteTask",
-        url: "api/deleteTask",
+
+        url: `${apiURL}/api/deleteTask`,
         method: "DELETE",
         data: this.task,
       });
