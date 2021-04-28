@@ -2,6 +2,19 @@
   <div class="bg-white shadow rounded px-3 pt-3 pb-5 border border-white">
     <div class="row">
       <div class="col">
+        <label for="author" class="block text-sm font-medium text-gray-700"
+          >Author</label
+        >
+        <input
+          v-model="form.author"
+          type="text"
+          name="author"
+          class="mt-1 block w-full border-gray p-1"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
         <label for="title" class="block text-sm font-medium text-gray-700"
           >Title</label
         >
@@ -88,6 +101,7 @@ export default {
   data() {
     return {
       form: {
+        author: "",
         title: "",
         date: new Date(),
         priority: "MEDIUM",
@@ -119,6 +133,7 @@ export default {
       });
       this.$emit("task-added");
       this.form = {
+        author: "",
         title: "",
         date: new Date(),
         priority: "MEDIUM",
