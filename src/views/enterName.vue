@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     btnClick: function(event) {
-      this.$router.push("todo-list");
+      this.$router.push("tasks");
     },
   },
 };
