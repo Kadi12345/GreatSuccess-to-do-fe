@@ -89,7 +89,7 @@ export default {
   methods: {
     async getTasks() {
       const res = await axios({
-        url: `${apiURL}/api/tasks`,
+        url: `${this.apiURL}/api/tasks`,
         //url: `/api/tasks`,
         method: "GET",
       });
@@ -99,14 +99,14 @@ export default {
       if (event.added) {
         if (column.title === "Done") {
           await axios({
-            url: `${apiURL}/api/moveTask/${event.added.element._id}/done`,
+            url: `${this.apiURL}/api/moveTask/${event.added.element._id}/done`,
 
             //url: `api/moveTask/${event.added.element._id}/done`,
             method: "GET",
           });
         } else if (column.title === "Todo") {
           await axios({
-            url: `${apiURL}/api/moveTask/${event.added.element._id}/todo`,
+            url: `${this.apiURL}/api/moveTask/${event.added.element._id}/todo`,
             //url: `api/moveTask/${event.added.element._id}/todo`,
             method: "GET",
           });
