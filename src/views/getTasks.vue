@@ -18,6 +18,7 @@
             Add new todo
           </p>
           <new-task class="my-3" @task-added="getTasks" />
+          <download-file />
         </div>
       </div>
 
@@ -61,12 +62,15 @@ import draggable from "vuedraggable";
 import TaskCard from "../components/TaskCard";
 import NewTask from "../components/NewTask";
 import axios from "axios";
+import DownloadFile from "../components/DownloadFile";
+
 export default {
   name: "App",
   components: {
     TaskCard,
     draggable,
     NewTask,
+    DownloadFile,
   },
   data() {
     return {
