@@ -96,6 +96,7 @@
 <script>
 import axios from "axios";
 import Datepicker from "vuejs-datepicker";
+import { mapState } from "vuex";
 
 export default {
   data() {
@@ -114,6 +115,11 @@ export default {
     Datepicker,
   },
   computed: {
+    ...mapState({
+      author: (state) => state.author,
+      nameAlias: "author",
+    }),
+
     priorityColor() {
       const mappings = {
         HIGH: "red",
@@ -124,6 +130,11 @@ export default {
       return mappings[this.form.priority] || mappings.default;
     },
   },
+
+  async created() {
+      this.form.author = this.$store.state.author;
+    },
+
   methods: {
     async addTodo() {
       await axios({
@@ -132,7 +143,7 @@ export default {
         method: "POST",
         data: this.form,
       });
-      this.$emit("task-added");
+      this.$emit("task-added" );
       this.form = {
         author: "",
         title: "",

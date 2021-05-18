@@ -49,6 +49,7 @@
               :task="task"
               class="mt-3 cursor-move"
               @task-deleted="getTasks"
+              @name-entered="getTasks"
             ></task-card>
           </draggable>
         </div>
@@ -117,7 +118,7 @@ export default {
         }
       }
     },
-    backToEnterName: function(event) {
+    backToEnterName() {
       this.$router.push("/");
     },
   },
