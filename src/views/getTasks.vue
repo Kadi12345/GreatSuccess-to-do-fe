@@ -26,6 +26,7 @@
         <div
           v-for="column in columns"
           :key="column.title"
+          @name-entered="getTasksByAuthor($event)"
           class="bg-gray-100 rounded-lg px-3 py-3 column-width rounded mr-4"
         >
           <p
@@ -48,8 +49,7 @@
               :key="task.id"
               :task="task"
               class="mt-3 cursor-move"
-              @task-deleted="getTasks"
-              @name-entered="getTasks"
+              @task-deleted="getTasksByAuthor"
             ></task-card>
           </draggable>
         </div>
@@ -73,6 +73,7 @@ export default {
     NewTask,
     DownloadFile,
   },
+
   data() {
     return {
       apiURL: process.env.VUE_APP_BACKEND_URL,
@@ -89,9 +90,18 @@ export default {
     };
   },
   async created() {
-    await this.getTasks();
+    await this.getTasksByAuthor();
   },
   methods: {
+    async getTasksByAuthor(event) {
+      const tasksByAuthor = await axios({
+        url: `${this.apiURL}/api/tasks/` + event.author,
+        //url: `/api/tasks`,
+        method: "GET",
+      });
+      this.columns = tasksByAuthor.data;
+    },
+
     async getTasks() {
       const res = await axios({
         url: `${this.apiURL}/api/tasks`,
