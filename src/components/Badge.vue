@@ -1,5 +1,4 @@
 <template>
-<div class="test">
   <div
     class="px-3 h-6 rounded-full text-xs font-semibold flex items-center"
     :class="`bg-${color}-100 text-${color}-700`"
@@ -8,7 +7,6 @@
     <span>
       <slot></slot>
     </span>
-  </div>
   </div>
 </template>
 <script>
