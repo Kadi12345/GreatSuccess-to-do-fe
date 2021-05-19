@@ -18,9 +18,7 @@
             <button
               class="bg-green-400 px-4 py-2 rounded"
               type="submit"
-              @click="
-              btnClick(),
-              $store.commit('nameEntered', author);"
+              @click="btnClick(), $store.commit('nameEntered', author)"
             >
               View my tasks
             </button>
@@ -31,7 +29,6 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
 
 export default {
   data() {
@@ -40,15 +37,15 @@ export default {
     };
   },
 
-computed: mapState({
-    author: (state) => state.author,
-    nameAlias: "author",
-  }),
+ // computed: mapState({
+    //author: (state) => state.author,
+   // nameAlias: "author",
+ // }),
 
   methods: {
     btnClick() {
       this.$emit("name-entered", {
-        author: this.author
+        author: this.author,
       });
       this.$router.push("tasks");
     },

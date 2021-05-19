@@ -145,7 +145,7 @@ export default {
       });
       this.$emit("task-added" );
       this.form = {
-        author: "",
+        author: this.$store.state.author,
         title: "",
         date: new Date(),
         priority: "MEDIUM",
