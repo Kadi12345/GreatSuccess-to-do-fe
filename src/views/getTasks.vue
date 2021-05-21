@@ -89,6 +89,7 @@ export default {
   },
   async created() {
     await this.getTasks();
+    
   },
   methods: {
     async getTasks() {
@@ -98,6 +99,7 @@ export default {
         method: "GET",
       });
       this.columns = res.data;
+      
     },
     async moveTask(event, column) {
       if (event.added) {
