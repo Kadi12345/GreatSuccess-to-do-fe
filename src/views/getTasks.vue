@@ -17,7 +17,7 @@
           >
             Add new todo
           </p>
-          <new-task class="my-3" @task-added="getTasks" />
+          <new-task class="my-3" @task-added="getTasksByAuthor" />
           <download-file />
         </div>
       </div>
@@ -26,7 +26,6 @@
         <div
           v-for="column in columns"
           :key="column.title"
-          @name-entered="getTasksByAuthor()"
           class="bg-gray-100 rounded-lg px-3 py-3 column-width rounded mr-4"
         >
           <p
@@ -49,7 +48,7 @@
               :key="task.id"
               :task="task"
               class="mt-3 cursor-move"
-              @task-deleted="getTasks"
+              @task-deleted="getTasksByAuthor"
             ></task-card>
           </draggable>
         </div>
@@ -65,7 +64,6 @@ import NewTask from "../components/NewTask";
 import axios from "axios";
 import DownloadFile from "../components/DownloadFile";
 
-import { mapState } from "vuex";
 
 export default {
   name: "App",
@@ -76,13 +74,13 @@ export default {
     DownloadFile,
   },
 
-  computed: {
-    ...mapState({
-      author: (state) => state.author,
-      nameAlias: "author",
-    }),
-  },
-  
+  //computed: {
+   // ...mapState({
+     // author: (state) => state.author,
+     // nameAlias: "author",
+   // }),
+ // },
+
   data() {
     return {
       apiURL: process.env.VUE_APP_BACKEND_URL,
@@ -103,12 +101,13 @@ export default {
   },
   methods: {
     async getTasksByAuthor() {
+      let authorEntered = this.$store.state.author;
       const tasksByAuthor = await axios({
-        url: `${this.apiURL}/api/tasks/${this.store.state.author}`,
+        url: `${this.apiURL}/api/tasks/${authorEntered}`,
         //url: `/api/tasks`,
         method: "GET",
       });
-      this.columns = tasksByAuthor.data.result;
+      this.columns = tasksByAuthor.data;
     },
 
     async getTasks() {
