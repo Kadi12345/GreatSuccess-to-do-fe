@@ -18,7 +18,7 @@
             <button
               class="bg-green-400 px-4 py-2 rounded"
               type="submit"
-              @click="btnClick"
+              @click="btnClick(), $store.commit('nameEntered', author)"
             >
               View my tasks
             </button>
@@ -29,14 +29,24 @@
   </div>
 </template>
 <script>
+
 export default {
   data() {
     return {
       author: "",
     };
   },
+
+ // computed: mapState({
+    //author: (state) => state.author,
+   // nameAlias: "author",
+ // }),
+
   methods: {
-    btnClick: function(event) {
+    btnClick() {
+      this.$emit("name-entered", {
+        author: this.author,
+      });
       this.$router.push("tasks");
     },
   },

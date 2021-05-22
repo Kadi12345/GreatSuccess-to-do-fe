@@ -17,7 +17,7 @@
           >
             Add new todo
           </p>
-          <new-task class="my-3" @task-added="getTasks" />
+          <new-task class="my-3" @task-added="getTasksByAuthor" />
           <download-file />
         </div>
       </div>
@@ -48,7 +48,7 @@
               :key="task.id"
               :task="task"
               class="mt-3 cursor-move"
-              @task-deleted="getTasks"
+              @task-deleted="getTasksByAuthor"
             ></task-card>
           </draggable>
         </div>
@@ -64,6 +64,7 @@ import NewTask from "../components/NewTask";
 import axios from "axios";
 import DownloadFile from "../components/DownloadFile";
 
+
 export default {
   name: "App",
   components: {
@@ -72,6 +73,14 @@ export default {
     NewTask,
     DownloadFile,
   },
+
+  //computed: {
+   // ...mapState({
+     // author: (state) => state.author,
+     // nameAlias: "author",
+   // }),
+ // },
+
   data() {
     return {
       apiURL: process.env.VUE_APP_BACKEND_URL,
@@ -88,10 +97,20 @@ export default {
     };
   },
   async created() {
-    await this.getTasks();
-    
+    await this.getTasksByAuthor();
+
   },
   methods: {
+    async getTasksByAuthor() {
+      let authorEntered = this.$store.state.author;
+      const tasksByAuthor = await axios({
+        url: `${this.apiURL}/api/tasks/${authorEntered}`,
+        //url: `/api/tasks`,
+        method: "GET",
+      });
+      this.columns = tasksByAuthor.data;
+    },
+
     async getTasks() {
       const res = await axios({
         url: `${this.apiURL}/api/tasks`,
@@ -119,7 +138,7 @@ export default {
         }
       }
     },
-    backToEnterName: function(event) {
+    backToEnterName() {
       this.$router.push("/");
     },
   },
