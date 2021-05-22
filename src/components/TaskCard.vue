@@ -13,7 +13,7 @@
         Task: {{ task.title }}
       </p>
     </div>
-    <div class="flex justify-between">
+    <div class="flex justify-between date">
       <p>Due-date:</p>
       <span class="text-sm text-gray-600">
         {{ moment(task.date).format("DD.MM.YYYY") }}</span
