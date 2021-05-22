@@ -98,6 +98,7 @@ export default {
   },
   async created() {
     await this.getTasksByAuthor();
+
   },
   methods: {
     async getTasksByAuthor() {
@@ -117,6 +118,7 @@ export default {
         method: "GET",
       });
       this.columns = res.data;
+      
     },
     async moveTask(event, column) {
       if (event.added) {
