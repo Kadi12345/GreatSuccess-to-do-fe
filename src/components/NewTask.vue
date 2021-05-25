@@ -85,7 +85,7 @@
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col text-right">
+      <div class="col text-center">
         <button class="bg-green-400 px-4 py-2 rounded" @click="addTodo">
           Add todo
         </button>
