@@ -18,9 +18,7 @@
 <script>
 export default {
   data() {
-    return {
-      apiURL: process.env.VUE_APP_BACKEND_URL,
-    };
+    return {};
   },
 
   methods: {
