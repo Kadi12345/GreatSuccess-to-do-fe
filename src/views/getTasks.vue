@@ -76,7 +76,6 @@ export default {
   data() {
     return {
       apiURL: process.env.VUE_APP_BACKEND_URL,
-      author: '',
       authors: [],
       columns: [
         {
@@ -90,7 +89,7 @@ export default {
       ],
     };
   },
-  
+
   async created() {
     await this.getTasksByAuthor();
   },
@@ -105,7 +104,6 @@ export default {
       let authorEntered = this.$store.state.author;
       const tasksByAuthor = await axios({
         url: `${this.apiURL}/api/tasks/${authorEntered}`,
-        //url: `/api/tasks`,
         method: 'GET',
       });
       this.columns = tasksByAuthor.data;
@@ -121,7 +119,6 @@ export default {
     async getTasks() {
       const res = await axios({
         url: `${this.apiURL}/api/tasks`,
-        //url: `/api/tasks`,
         method: 'GET',
       });
       this.columns = res.data;
@@ -132,13 +129,11 @@ export default {
           await axios({
             url: `${this.apiURL}/api/moveTask/${event.added.element._id}/done`,
 
-            //url: `api/moveTask/${event.added.element._id}/done`,
             method: 'GET',
           });
         } else if (column.title === 'Todo') {
           await axios({
             url: `${this.apiURL}/api/moveTask/${event.added.element._id}/todo`,
-            //url: `api/moveTask/${event.added.element._id}/todo`,
             method: 'GET',
           });
         }
