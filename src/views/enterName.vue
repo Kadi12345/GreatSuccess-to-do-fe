@@ -4,7 +4,7 @@
       <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
         <form
           class="text-center border border-grey p-5"
-          style="margin-top:30px;height:auto;padding-top:100px !important;"
+          style="margin-top: 30px; height: auto; padding-top: 100px !important"
         >
           <input
             type="text"
@@ -29,25 +29,34 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 
 export default {
   data() {
     return {
+      apiURL: process.env.VUE_APP_BACKEND_URL,
       author: "",
+      authors: [],
     };
   },
 
- // computed: mapState({
-    //author: (state) => state.author,
-   // nameAlias: "author",
- // }),
-
+  beforeMount() {
+    this.getUniqueAuthors();
+  },
   methods: {
     btnClick() {
       this.$emit("name-entered", {
         author: this.author,
       });
       this.$router.push("tasks");
+    },
+
+    async getUniqueAuthors() {
+      const res = await axios({
+        url: `${this.apiURL}/api/authorsList`,
+        method: "GET",
+      });
+      this.authors = res.data;
     },
   },
 };
